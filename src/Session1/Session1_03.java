@@ -1,5 +1,5 @@
-import java.util.Scanner;
-public class Session3 {
+package Session1;
+public class Session1_03 {
     public static void main(String[] args) {
         String book1 = "Java Basic";
         String book2 = "Python Intro";

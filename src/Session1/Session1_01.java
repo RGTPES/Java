@@ -1,5 +1,7 @@
+
+package Session1;
 import  java.util.Scanner;
-public class Session1 {
+public class Session1_01 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.print("Nhập mã sách : ");

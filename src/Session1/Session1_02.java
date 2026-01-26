@@ -1,5 +1,6 @@
+package Session1;
 import java.util.Scanner;
-public class Session2 {
+public class Session1_02 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhập số ngày chậm trễ: ");
