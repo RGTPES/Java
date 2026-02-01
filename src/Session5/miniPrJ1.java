@@ -3,46 +3,132 @@ package Session5;
 import java.util.Scanner;
 
 public class miniPrJ1 {
+    static Scanner sc = new Scanner(System.in);
 
-    public static int[] Input(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Mời bạn nhập số lượng phần tử trong mảng");
+    // ================== 1. TWO SUM ==================
+    public static void twoSum() {
+        System.out.print("Nhap so luong phan tu: ");
         int n = sc.nextInt();
         int[] arr = new int[n];
-        for(int i=0;i<n;i++) {
-            System.out.printf("Mời bạn nhập số thứ %d\n",i+1 );
+
+        System.out.println("Nhap cac phan tu:");
+        for (int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
         }
-        return arr;
-    };
-    public static void printArray(int[] arr){
-        for(int i=0;i<arr.length;i++){
-            System.out.println(arr[i] + " ");
-        }
-    }
-    public static void twoSum() {
-        int[] arr = Input();
-        System.out.println("Mời bạn nhập target: ");
-        int target = sc.nextInt();
-        boolean found = false;
-        for (int i = 0; i < arr.length - 1; i++) {
-            for (int j = i + 1; j < arr.length; j++) {
-                if (arr[i] + arr[j] == target) {
-                    System.out.println("Tìm thấy tại vị trí: " + i + " và " + j);
-                    found = true;
 
+        System.out.print("Nhap target: ");
+        int target = sc.nextInt();
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (arr[i] + arr[j] == target) {
+                    System.out.println("Vi tri: [" + i + ", " + j + "]");
+                    return;
                 }
             }
         }
-        if (!found) {
-            System.out.println("Không tìm thấy ");
+        System.out.println("Khong tim thay cap phan tu!");
+    }
+
+    // ================== 2. MOVE ZEROES ==================
+    public static void moveZeroes() {
+        System.out.print("Nhap so luong phan tu: ");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+
+        System.out.println("Nhap cac phan tu:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        int index = 0;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != 0) {
+                arr[index++] = arr[i];
+            }
+        }
+        while (index < n) {
+            arr[index++] = 0;
+        }
+
+        System.out.print("Ket qua: ");
+        printArray(arr);
+    }
+
+    // ================== 3. VALID PALINDROME ==================
+    public static void validPalindrome() {
+        System.out.print("Nhap chuoi: ");
+        String s = sc.nextLine();
+
+        s = s.toLowerCase().replaceAll("[^a-z0-9]", "");
+
+        int left = 0, right = s.length() - 1;
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) {
+                System.out.println("KHONG phai Palindrome");
+                return;
+            }
+            left++;
+            right--;
+        }
+        System.out.println("LA Palindrome");
+    }
+
+    // ================== 4. REVERSE WORDS ==================
+    public static void reverseWords() {
+
+        System.out.print("Nhap chuoi: ");
+        String s = sc.nextLine().trim();
+
+        String[] words = s.trim().split("\\s+");
+        String result = "";
+
+        for (int i = words.length - 1; i >= 0; i--) {
+            result = result + words[i];
+            if (i > 0) {
+                result = result + " ";
+            }
+        }
+        System.out.println("Ket qua: " + result);
+    }
+
+    // ================== 5. HAPPY NUMBER ==================
+    public static void isHappyNumber() {
+        System.out.print("Nhap mot so: ");
+        int n = sc.nextInt();
+        int first = n;
+        while (n != 1) {
+            int sum = 0;
+            int temp = n;
+
+            while (temp > 0) {
+                int digit = temp % 10;
+                sum += digit * digit;
+                temp /= 10;
+            }
+
+            n = sum;
+        }
+
+        if (n == 1) {
+            System.out.println("la so hanh phuc");
+        } else {
+            System.out.println("ko phai so hanh phuc");
         }
     }
 
-    static Scanner sc = new Scanner(System.in);
+    // ================== IN MANG ==================
+    public static void printArray(int[] arr) {
+        for (int x : arr) {
+            System.out.print(x + " ");
+        }
+        System.out.println();
+    }
 
+    // ================== MAIN MENU ==================
     public static void main(String[] args) {
         String choice;
+
         do {
             System.out.println("\n========== MENU CHINH ==========");
             System.out.println("1. Two Sum");
@@ -54,19 +140,27 @@ public class miniPrJ1 {
             System.out.println("================================");
             System.out.print("Chon chuc nang: ");
 
-            choice = sc.nextLine();
+            choice = sc.nextLine().trim();
 
             switch (choice) {
+
                 case "1":
                     twoSum();
+                    sc.nextLine();
                     break;
                 case "2":
+                    moveZeroes();
+                    sc.nextLine();
                     break;
                 case "3":
+                    validPalindrome();
                     break;
                 case "4":
+                    reverseWords();
                     break;
                 case "5":
+                    isHappyNumber();
+                    sc.nextLine();
                     break;
                 case "0":
                     System.out.println("Thoat chuong trinh. Bye!");
@@ -75,8 +169,8 @@ public class miniPrJ1 {
                     System.out.println("Lua chon khong hop le!");
             }
 
-        } while (choice != "0");
+        } while (!choice.equals("0"));
+
+        sc.close();
     }
-
-
 }
