@@ -2,16 +2,18 @@ package Session8;
 
 import java.util.Scanner;
 
-class Student{
+class Student {
+
     private String id;
     private String name;
     private double score;
 
     public Student() {
         id = "";
-        name ="";
+        name = "";
         score = 0;
     }
+
     public Student(String id, String name, double score) {
         this.id = id;
         this.name = name;
@@ -41,6 +43,7 @@ class Student{
     public void setScore(double score) {
         this.score = score;
     }
+
     public String getRank() {
         if (score >= 8.0) {
             return "Gioi";
@@ -50,18 +53,18 @@ class Student{
             return "Trung Binh";
         }
     }
+
     public String toString() {
-        return "Ma: " + id +
-                ", Ten: " + name +
-                ", Diem: " + score +
-                ", Hoc luc: " + getRank();
+        return "Ma: " + id + ", Ten: " + name + ", Diem: " + score + ", Hoc luc: " + getRank();
     }
 }
 
-public class Exam2  {
+public class Exam2 {
+
     static Scanner sc = new Scanner(System.in);
     static Student[] students = new Student[100];
     static int count = 0;
+
     public static void addStudent() {
         if (count >= students.length) {
             System.out.println("Danh sach day");
@@ -77,6 +80,7 @@ public class Exam2  {
         count++;
         System.out.println("Them thanh cong");
     }
+
     public static void displayStudents() {
         if (count == 0) {
             System.out.println("Danh sach rong");
@@ -87,6 +91,7 @@ public class Exam2  {
             System.out.println(students[i]);
         }
     }
+
     public static void searchByRank() {
         System.out.print("Nhap hoc luc can tim (Gioi/Kha/Trung Binh): ");
         String rank = sc.nextLine();
@@ -116,10 +121,9 @@ public class Exam2  {
     }
 
     public static void main(String[] args) {
-        String choice ="0";
+        String choice = "0";
         Scanner sc = new Scanner(System.in);
-
-        do{
+        do {
             System.out.println("===QUẢN LÝ ĐIỂM SINH VIÊN===");
             System.out.println("1.Nhập danh sách sinh viên");
             System.out.println("2.Hiển thị danh sách sinh viên");
@@ -127,7 +131,7 @@ public class Exam2  {
             System.out.println("4.Sắp xếp theo học lực giảm dần");
             System.out.println("5.Thoát");
             System.out.println("Chọn chức năng: ");
-             choice = sc.nextLine();
+            choice = sc.nextLine();
             switch (choice) {
                 case "1":
                     addStudent();
@@ -142,6 +146,6 @@ public class Exam2  {
                     sortByRankDesc();
                     break;
             }
-        }while(!choice.equals("5"));
+        } while (!choice.equals("5"));
     }
 }
